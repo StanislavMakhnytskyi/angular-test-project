@@ -1,23 +1,25 @@
 <!doctype html>
 <html class="no-js" ng-app="task">
   <head>
-    <base href="/" />
+    <base href="/"/>
     <meta charset="utf-8">
     <title>task</title>
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- build:css({src}) styles/vendor.css -->
-    <link rel="stylesheet" href="../.tmp/app/vendor.css">
+    <!-- build:css({.tmp,src}) styles/vendor.css -->
+    <link rel="stylesheet" href="app/vendor.css">
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css({src}) styles/app.css -->
+    <!-- build:css({.tmp,src}) styles/app.css -->
     <!-- inject:css -->
     <link rel="stylesheet" href="app/index.css">
     <!-- endinject -->
     <!-- endbuild -->
+
+    <link rel="stylesheet" href="../.tmp/app/vendor.css">
+    <link rel="stylesheet" href="../.tmp/app/index.css">
 
     <!-- build:js scripts/modernizr.js -->
     <script src="../bower_components/modernizr/modernizr.js"></script>
@@ -44,13 +46,14 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js({src}) scripts/app.js -->
+    <!-- build:js({.tmp,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/index.js"></script>
     <script src="components/notFound/notFound.controller.js"></script>
     <script src="components/navbar/navbar.controller.js"></script>
     <script src="components/login/login.controller.js"></script>
     <script src="components/index/index.controller.js"></script>
+    <script src="app/services.js"></script>
     <!-- endinject -->
 
     <!-- inject:partials -->

@@ -1,6 +1,7 @@
 'use strict';
 
-var task = angular.module('task', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ngRoute'])
+angular.module('task',
+  ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ngRoute', 'ui.bootstrap'])
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {

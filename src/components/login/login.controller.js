@@ -36,5 +36,5 @@ angular.module('task')
           }
         });
       }
-    }
+    };
   }]);
