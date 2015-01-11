@@ -14,13 +14,13 @@
                        ng-model="formInfo.email"
                        required>
 
-                <div ng-show="(loginForm.email.$invalid && loginForm.email.$dirty) || submited">
+                <div ng-show="(loginForm.email.$invalid && loginForm.email.$dirty) || submitted">
                   <small class="text-danger" ng-show="loginForm.email.$error.required">Please input a email.</small>
-                  <small class="text-danger ng-hide" ng-show="loginForm.email.$error.email">Invalid email address.
+                  <small class="text-danger" ng-show="loginForm.email.$error.email">Invalid email address.
                   </small>
                 </div>
 
-                <small class="text-danger ng-hide" ng-show="wrongData">Wrong email or password.</small>
+                <small class="text-danger" ng-show="wrongData">Wrong email or password.</small>
 
               </div>
             </div>
@@ -35,7 +35,7 @@
                        ng-maxlength="16"
                        required>
 
-                <div ng-show="(loginForm.password.$invalid && loginForm.password.$dirty) || submited">
+                <div ng-show="(loginForm.password.$invalid && loginForm.password.$dirty) || submitted">
                   <small class="text-danger" ng-show="loginForm.password.$error.required">Please input a password.
                   </small>
                   <small class="text-danger" ng-show="loginForm.password.$error.minlength">Your password is

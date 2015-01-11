@@ -8,10 +8,12 @@ angular.module('task')
 
     $scope.formInfo = {};
     // no validation before submit
-    $scope.submited = false;
+    $scope.submitted = false;
+
+    console.log($scope.submitted);
 
     $scope.submit = function () {
-      $scope.submited = true;
+      $scope.submitted = true;
 
       $scope.email = $scope.loginForm.email.$viewValue;
       $scope.password = $scope.loginForm.password.$viewValue;
@@ -36,5 +38,5 @@ angular.module('task')
           }
         });
       }
-    };
+    }
   }]);

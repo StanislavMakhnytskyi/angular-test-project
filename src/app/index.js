@@ -10,7 +10,11 @@ angular.module('task',
       })
       .when('/index', {
         templateUrl: '/components/index/index.html',
-        controller: 'MainCtrl'
+        controller: 'IndexCtrl'
+      })
+      .when('/products/add', {
+        templateUrl: '/components/products/addProduct.html',
+        controller: 'AddProductCtrl'
       })
       .otherwise({
         templateUrl: '/components/notFound/notFound.html',

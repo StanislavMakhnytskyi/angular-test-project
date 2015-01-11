@@ -30,6 +30,19 @@ app.get('/api/products/', function (req, res) {
   res.json(products);
 });
 
+app.post('/api/products', function (req, res) {
+  var newProduct = {
+    'id': products.length,
+    'name': req.body.name,
+    'price': req.body.price,
+    'description': req.body.description
+  };
+
+  products.push(newProduct);
+
+  res.json(products);
+});
+
 app.get('/api/products/:id', function (req, res) {
   var productId = getId(req.params.id),
     responseProduct;
@@ -40,18 +53,46 @@ app.get('/api/products/:id', function (req, res) {
     }
   });
 
-  console.log(responseProduct);
+  res.json(responseProduct);
+});
+
+app.put('/api/products/:id', function (req, res) {
+  var productId = getId(req.params.id),
+    responseProduct;
+
+  _.each(products, function (product) {
+    if (product.id === productId) {
+      responseProduct = product;
+    }
+  });
 
   res.json(responseProduct);
+});
+
+app.delete('/api/products/:id', function (req, res) {
+  var productId = getId(req.params.id),
+    productToDelete;
+
+  _.each(products, function (product) {
+    if (product['id'] === productId) {
+      productToDelete = products.indexOf(product);
+    }
+  });
+
+  products.splice(productToDelete, 1);
 });
 
 app.all('/*', function (req, res, next) {
   res.sendFile('src/index.html', {root: __dirname});
 });
 
-app.listen(3001);
+app.listen(3000);
 
 console.log("\nServer start on 127.0.0.1:3000\n");
+
+function getId (id) {
+  return /\d/.exec(id)[0];
+}
 
 var users = [{
   'id': '1',
@@ -73,52 +114,52 @@ var products = [{
   'id': '1',
   'name': 'AngularJS',
   'price': '1234.21',
-  'description': 'description'
+  'description': '1HTML enhanced for web apps!'
 }, {
   'id': '2',
   'name': 'AngularJS',
   'price': '1234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '1HTML enhanced for web apps!'
 }, {
   'id': '3',
   'name': 'AngularJS',
   'price': '2234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '2HTML enhanced for web apps!'
 }, {
   'id': '4',
   'name': 'AngularJS',
   'price': '3234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '3HTML enhanced for web apps!'
 }, {
   'id': '5',
   'name': 'AngularJS',
   'price': '4234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '4HTML enhanced for web apps!'
 }, {
   'id': '6',
   'name': 'AngularJS',
   'price': '5234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '5HTML enhanced for web apps!'
 }, {
   'id': '7',
   'name': 'AngularJS',
   'price': '6234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '6HTML enhanced for web apps!'
 }, {
   'id': '8',
   'name': 'AngularJS',
   'price': '7234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '7HTML enhanced for web apps!'
 }, {
   'id': '9',
   'name': 'AngularJS',
   'price': '8234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '8HTML enhanced for web apps!'
 }, {
   'id': '10',
   'name': 'AngularJS',
   'price': '9234.56',
-  'description': 'HTML enhanced for web apps!'
+  'description': '9HTML enhanced for web apps!'
 }, {
   'id': '11',
   'name': 'AngularJS',
@@ -180,7 +221,3 @@ var products = [{
   'price': '6234.56',
   'description': 'HTML enhanced for web apps!'
 }];
-
-function getId (id) {
-  return /\d/.exec(id)[0];
-}
