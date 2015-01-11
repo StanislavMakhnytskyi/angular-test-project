@@ -15,19 +15,50 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/api/check/', function (req, res) {
-  var success = false;
+  var userId;
 
   _.each(users, function (user) {
     if (req.body.email === user.email && req.body.password === user.password) {
-      success = true;
+      userId = user.id;
     }
   });
 
-  res.send(success);
+  res.send(userId);
 });
 
-app.get('/api/products/', function (req, res) {
-  res.json(products);
+app.get('/api/users/:id', function (req, res) {
+  var userId = getId(req.params.id),
+    responseUser;
+
+  _.each(users, function (user) {
+    if (user.id === userId) {
+      responseUser = user;
+    }
+  });
+
+  res.json(responseUser);
+});
+
+app.put('/api/users/:id', function (req, res) {
+  var userToReplace,
+    editedUser = {
+      'id': '',
+      'firstName': '',
+      'lastName': '',
+      'email': '',
+      'password': '',
+      'phone': ''
+    };
+
+  _.each(users, function (user) {
+    if (user.id === editedUser.id) {
+      userToReplace = users.indexOf(user);
+    }
+  });
+
+  users[userToReplace] = editedUser;
+
+  res.json(editedUser);
 });
 
 app.post('/api/products', function (req, res) {
@@ -40,6 +71,10 @@ app.post('/api/products', function (req, res) {
 
   products.push(newProduct);
 
+  res.json(products);
+});
+
+app.get('/api/products/', function (req, res) {
   res.json(products);
 });
 
@@ -57,16 +92,23 @@ app.get('/api/products/:id', function (req, res) {
 });
 
 app.put('/api/products/:id', function (req, res) {
-  var productId = getId(req.params.id),
-    responseProduct;
+  var productToReplace,
+    editedProduct = {
+      'id': req.body.id,
+      'name': req.body.name,
+      'price': req.body.price,
+      'description': req.body.description
+    };
 
   _.each(products, function (product) {
-    if (product.id === productId) {
-      responseProduct = product;
+    if (product.id === editedProduct.id) {
+      productToReplace = products.indexOf(product);
     }
   });
 
-  res.json(responseProduct);
+  products[productToReplace] = editedProduct;
+
+  res.json(editedProduct);
 });
 
 app.delete('/api/products/:id', function (req, res) {
@@ -86,9 +128,9 @@ app.all('/*', function (req, res, next) {
   res.sendFile('src/index.html', {root: __dirname});
 });
 
-app.listen(3000);
+app.listen(3001);
 
-console.log("\nServer start on 127.0.0.1:3000\n");
+console.log("\nServer start on 127.0.0.1:3001\n");
 
 function getId (id) {
   return /\d/.exec(id)[0];

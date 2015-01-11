@@ -2,8 +2,8 @@
 
 angular.module('task')
   .controller('IndexCtrl',
-  ['$scope', '$cookies', 'ProductsFactory', 'ProductFactory', '$location',
-    function ($scope, $cookies, ProductsFactory, ProductFactory, $location) {
+  ['$scope', '$cookies', 'ProductsFactory', 'ProductFactory', '$location', 'ProductModelFactory',
+    function ($scope, $cookies, ProductsFactory, ProductFactory, $location, ProductModelFactory) {
       //
       // FETCH DATA FROM SERVER
       //
@@ -67,5 +67,14 @@ angular.module('task')
       //
       $scope.addProduct = function () {
         $location.path('/products/add');
+      };
+
+      //
+      // EDIT PRODUCT
+      //
+      $scope.editProduct = function (product) {
+        ProductModelFactory.product = product;
+
+        $location.path('/products/edit/' + product.id);
       };
     }]);

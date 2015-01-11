@@ -1,6 +1,9 @@
 'use strict';
 
 angular.module('task')
+  //
+  // FETCH DATA FROM SERVER
+  //
   .factory('ProductsFactory', function ($resource) {
     return $resource(
       '/api/products', {}, {
@@ -17,8 +20,23 @@ angular.module('task')
     })
   })
 
-  .service('ModelService', function () {
-    var _model = {};
+  .factory('UserFactory', function ($resource) {
+    return $resource('/api/users/:id', {}, {
+      show: {method: 'GET'},
+      update: {method: 'PUT', params: {id: '@id'}}
+    })
+  })
 
-    this.model = _model;
+  //
+  // SEND PRODUCT MODELS BETWEEN CONTROLLERS
+  //
+  .factory('ProductModelFactory', function () {
+    return {
+      product: {
+        'id': '',
+        'name': '',
+        'price': '',
+        'description': ''
+      }
+    };
   });

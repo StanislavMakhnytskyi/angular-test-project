@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" ng-controller="NavbarCtrl">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" ng-href="/index">Cleveroad Project</a>
@@ -9,9 +9,9 @@
         <li><a ng-href="#">About</a></li>
       </ul>-->
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-href="#">{{ name }} / {{ email }}</a></li>
+        <li><a ng-href="/users/edit/{{ user.id }}">{{ user.firstName }} / {{ user.email }}</a></li>
         <li><a ng-href="#">Setting</a></li>
-        <li><a ng-href="#" ng-click="logout()">Logout</a></li>
+        <li><a ng-href="/">Logout</a></li>
       </ul>
     </div>
   </div>

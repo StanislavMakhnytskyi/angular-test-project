@@ -8,22 +8,23 @@
       <div class="panel panel-default">
         <div class="panel-body">
 
-          <form class="form-horizontal" ng-submit="submit()" name="addProductForm" novalidate=""
+          <form class="form-horizontal" ng-submit="submit()" name="editProductForm" novalidate=""
                 ng-hide="successfullyAdded">
 
             <div class="form-group">
               <label for="productName" class="col-sm-3 control-label">Name</label>
               <div class="col-sm-8">
                 <input type="text" class="form-control" id="productName" name="productName" placeholder="Name"
-                       ng-model="formInfo.productName"
+                       ng-model="product.name"
                        ng-maxlength="255"
                        required>
 
-                <div ng-show="(addProductForm.productName.$invalid && addProductForm.productName.$dirty) || submitted">
-                  <small class="text-danger" ng-show="addProductForm.productName.$error.required">
+                <div
+                  ng-show="(editProductForm.productName.$invalid && editProductForm.productName.$dirty) || submitted">
+                  <small class="text-danger" ng-show="editProductForm.productName.$error.required">
                     Please input a name of product.
                   </small>
-                  <small class="text-danger" ng-show="addProductForm.productName.$error.maxlength">
+                  <small class="text-danger" ng-show="editProductForm.productName.$error.maxlength">
                     Name of product can't be more than 255 chars long.
                   </small>
                 </div>
@@ -35,14 +36,15 @@
               <label for="productPrice" class="col-sm-3 control-label">Price</label>
               <div class="col-sm-8">
                 <input type="number" class="form-control" id="productPrice" name="productPrice" placeholder="Price"
-                       ng-model="formInfo.password"
+                       ng-model="product.price"
                        required>
 
                 <div
-                  ng-show="(addProductForm.productPrice.$invalid && addProductForm.productPrice.$dirty) || submitted">
-                  <small class="text-danger" ng-show="addProductForm.productPrice.$error.required">Please input a price.
+                  ng-show="(editProductForm.productPrice.$invalid && editProductForm.productPrice.$dirty) || submitted">
+                  <small class="text-danger" ng-show="editProductForm.productPrice.$error.required">
+                    Please input a price.
                   </small>
-                  <small class="text-danger" ng-show="addProductForm.productPrice.$error.number">
+                  <small class="text-danger" ng-show="editProductForm.productPrice.$error.number">
                     Price have to be a number.
                   </small>
                 </div>
@@ -54,17 +56,18 @@
               <div class="col-sm-8">
                 <textarea class="form-control" id="productDescription" name="productDescription"
                           placeholder="Description"
-                          ng-model="formInfo.productDescription"
+                          ng-model="product.description"
                           ng-maxlength="1000"
                           required>
+                  {{ product.description }}
                   </textarea>
 
                 <div
-                  ng-show="(addProductForm.productDescription.$invalid && addProductForm.productDescription.$dirty) || submitted">
-                  <small class="text-danger" ng-show="addProductForm.productDescription.$error.required">Please input a
+                  ng-show="(editProductForm.productDescription.$invalid && editProductForm.productDescription.$dirty) || submitted">
+                  <small class="text-danger" ng-show="editProductForm.productDescription.$error.required">Please input a
                     description.
                   </small>
-                  <small class="text-danger" ng-show="addProductForm.productDescription.$error.maxlength">
+                  <small class="text-danger" ng-show="editProductForm.productDescription.$error.maxlength">
                     Description of product can't be more than 1000 chars long.
                   </small>
                 </div>
@@ -83,7 +86,7 @@
 
           </form>
 
-          <h1 class="text-center" ng-show="successfullyAdded">Product successfully added</h1>
+          <h1 class="text-center" ng-show="successfullyAdded">Product successfully edited</h1>
         </div>
       </div>
     </div>

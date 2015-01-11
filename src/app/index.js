@@ -16,6 +16,14 @@ angular.module('task',
         templateUrl: '/components/products/addProduct.html',
         controller: 'AddProductCtrl'
       })
+      .when('/products/edit/:id', {
+        templateUrl: '/components/products/editProduct.html',
+        controller: 'EditProductCtrl'
+      })
+      .when('/users/edit/:id', {
+        templateUrl: '/components/users/editUser.html',
+        controller: 'EditUserCtrl'
+      })
       .otherwise({
         templateUrl: '/components/notFound/notFound.html',
         controller: 'NotFoundCtrl'

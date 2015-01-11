@@ -27,12 +27,12 @@
       <td>{{ product.name }}</td>
       <td>{{ product.price | price }}</td>
       <td>
-        <button class="btn btn-default" popover="{{ product.description }}" popover-trigger="focus">
+        <button class="btn btn-info" popover="{{ product.description }}" popover-trigger="focus">
           More info
         </button>
       </td>
       <td>
-        <button class="btn btn-default">Edit</button>
+        <button class="btn btn-primary" ng-click="editProduct(product)">Edit</button>
       </td>
     </tr>
   </table>
