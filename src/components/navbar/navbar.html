@@ -4,13 +4,9 @@
       <a class="navbar-brand" ng-href="/index">Cleveroad Project</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <!--<ul class="nav navbar-nav">
-        <li><a ng-href="#">Home</a></li>
-        <li><a ng-href="#">About</a></li>
-      </ul>-->
       <ul class="nav navbar-nav navbar-right">
         <li><a ng-href="/users/edit/{{ user.id }}">{{ user.firstName }} / {{ user.email }}</a></li>
-        <li><a ng-href="#">Setting</a></li>
+        <li><a ng-href="/users/edit/{{ user.id }}">Setting</a></li>
         <li><a ng-href="/">Logout</a></li>
       </ul>
     </div>

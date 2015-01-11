@@ -2,9 +2,9 @@
 
 angular.module('task')
   .controller('EditProductCtrl',
-  ['$scope', '$cookies', 'ProductFactory', 'ProductsFactory', '$location', '$timeout', '$routeParams',
+  ['$scope', '$cookies', 'ProductFactory', '$location', '$timeout', '$routeParams',
     'ProductModelFactory',
-    function ($scope, $cookies, ProductFactory, ProductsFactory, $location, $timeout, $routeParams, ProductModelFactory) {
+    function ($scope, $cookies, ProductFactory, $location, $timeout, $routeParams, ProductModelFactory) {
       $scope.formInfo = {};
 
       if (ProductModelFactory.product.id !== $routeParams.id) {
@@ -23,18 +23,14 @@ angular.module('task')
       // NO VALIDATION BEFORE SUBMIT
       //
       $scope.submitted = false;
-      $scope.successfullyAdded = false;
-
-      function isNumber (n) {
-        return !isNaN(parseFloat(n)) && isFinite(n);
-      }
+      $scope.successfullyEdited = false;
 
       $scope.submit = function () {
         $scope.submitted = true;
 
         if ($scope.editProductForm.$valid) {
-          ProductFactory.update($scope.product,  function () {
-            $scope.successfullyAdded = true;
+          ProductFactory.update($scope.product, function () {
+            $scope.successfullyEdited = true;
 
             $timeout(function () {
               $location.path('/index');

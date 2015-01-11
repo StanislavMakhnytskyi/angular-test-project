@@ -2,22 +2,23 @@
 
 angular.module('task')
   .controller('EditUserCtrl',
-  ['$scope', '$cookies', 'ProductFactory', 'ProductsFactory', '$location', '$timeout', '$routeParams',
-    'ProductModelFactory',
-    function ($scope, $cookies, ProductFactory, ProductsFactory, $location, $timeout, $routeParams, ProductModelFactory) {
-      $scope.formInfo = {};
+  ['$scope', '$cookies', 'UserFactory', '$location', '$timeout', '$routeParams',
+    function ($scope, $cookies, UserFactory, $location, $timeout, $routeParams) {
+      UserFactory.get({id: $cookies.authId}, function (data) {
+        $scope.user = data;
+      });
 
-      if (ProductModelFactory.product.id !== $routeParams.id) {
-        $scope.product = ProductFactory.get({id: $routeParams.id}, function (data) {
-          ProductModelFactory.product = data;
-
-          ProductModelFactory.product.price = parseFloat(ProductModelFactory.product.price);
-          $scope.product = ProductModelFactory.product;
-        });
-      }
-
-      ProductModelFactory.product.price = parseFloat(ProductModelFactory.product.price);
-      $scope.product = ProductModelFactory.product;
+      $scope.phoneNumberPattern = (function () {
+        var regexp = /^(\d{10})$/;
+        return {
+          test: function (value) {
+            if ($scope.requireTel === false) {
+              return true;
+            }
+            return regexp.test(value);
+          }
+        };
+      })();
 
       //
       // NO VALIDATION BEFORE SUBMIT
@@ -25,16 +26,12 @@ angular.module('task')
       $scope.submitted = false;
       $scope.successfullyAdded = false;
 
-      function isNumber (n) {
-        return !isNaN(parseFloat(n)) && isFinite(n);
-      }
-
       $scope.submit = function () {
         $scope.submitted = true;
 
-        if ($scope.editProductForm.$valid) {
-          ProductFactory.update($scope.product,  function () {
-            $scope.successfullyAdded = true;
+        if ($scope.editUserForm.$valid) {
+          UserFactory.update($scope.user, function () {
+            $scope.successfullyEdited = true;
 
             $timeout(function () {
               $location.path('/index');

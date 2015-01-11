@@ -42,13 +42,15 @@ app.get('/api/users/:id', function (req, res) {
 app.put('/api/users/:id', function (req, res) {
   var userToReplace,
     editedUser = {
-      'id': '',
-      'firstName': '',
-      'lastName': '',
-      'email': '',
-      'password': '',
-      'phone': ''
+      'id': req.body.id,
+      'firstName': req.body.firstName,
+      'lastName': req.body.lastName,
+      'email': req.body.email,
+      'password': req.body.password,
+      'phone': req.body.phone
     };
+
+  console.log(editedUser);
 
   _.each(users, function (user) {
     if (user.id === editedUser.id) {
@@ -142,31 +144,31 @@ var users = [{
   'lastName': 'Bond',
   'email': 'root@gmail.com',
   'password': '111111',
-  'phone': ''
+  'phone': '0123456789'
 }, {
   'id': '2',
   'firstName': 'Freddy',
   'lastName': 'Mercury',
   'email': 'star@gmail.com',
   'password': '111111',
-  'phone': ''
+  'phone': '0123456789'
 }];
 
 var products = [{
   'id': '1',
-  'name': 'AngularJS',
+  'name': 'AngularJS Book',
   'price': '1234.21',
-  'description': '1HTML enhanced for web apps!'
+  'description': 'HTML enhanced for web apps!'
 }, {
   'id': '2',
-  'name': 'AngularJS',
+  'name': 'BackboneJS Book',
   'price': '1234.56',
-  'description': '1HTML enhanced for web apps!'
+  'description': 'Also HTML enhanced for web apps!'
 }, {
   'id': '3',
-  'name': 'AngularJS',
+  'name': 'SomethingJS',
   'price': '2234.56',
-  'description': '2HTML enhanced for web apps!'
+  'description': 'Something else HTML enhanced for web apps!'
 }, {
   'id': '4',
   'name': 'AngularJS',
